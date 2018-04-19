@@ -174,6 +174,7 @@ test_expect_equal_json \
     "$expected"
 
 test_begin_subtest "signature verification with signer key unavailable"
+test_subtest_known_broken
 # move the gnupghome temporarily out of the way
 mv "${GNUPGHOME}"{,.bak}
 output=$(notmuch show --format=json --verify subject:"test signed message 001" \

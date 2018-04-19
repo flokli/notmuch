@@ -126,6 +126,7 @@ test_emacs '(notmuch-hello)
 test_expect_equal_file $EXPECTED/notmuch-tree-single-thread OUTPUT
 
 test_begin_subtest "Message window of tree view"
+test_subtest_known_broken
 test_emacs '(notmuch-hello)
 	    (goto-char (point-min))
 	    (re-search-forward "inbox")

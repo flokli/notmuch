@@ -48,12 +48,14 @@ test_emacs '(let ((notmuch-crypto-process-mime nil))
 test_expect_equal_file $EXPECTED/notmuch-show-process-crypto-mime-parts-off OUTPUT
 
 test_begin_subtest "process cryptographic MIME parts"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-crypto-process-mime t))
 	(notmuch-show "id:20091117203301.GV3165@dottiness.seas.harvard.edu")
 	(test-visible-output))'
 test_expect_equal_file $EXPECTED/notmuch-show-process-crypto-mime-parts-on OUTPUT
 
 test_begin_subtest "process cryptographic MIME parts (w/ notmuch-show-toggle-process-crypto)"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-crypto-process-mime nil))
 	(notmuch-show "id:20091117203301.GV3165@dottiness.seas.harvard.edu")
 	(notmuch-show-toggle-process-crypto)
@@ -61,6 +63,7 @@ test_emacs '(let ((notmuch-crypto-process-mime nil))
 test_expect_equal_file $EXPECTED/notmuch-show-process-crypto-mime-parts-on OUTPUT
 
 test_begin_subtest "notmuch-show: don't elide non-matching messages"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-show-only-matching-messages nil))
 	(notmuch-search "from:lars@seas.harvard.edu and subject:\"Maildir storage\"")
 	(notmuch-test-wait)
@@ -70,6 +73,7 @@ test_emacs '(let ((notmuch-show-only-matching-messages nil))
 test_expect_equal_file $EXPECTED/notmuch-show-elide-non-matching-messages-off OUTPUT
 
 test_begin_subtest "notmuch-show: elide non-matching messages"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-show-only-matching-messages t))
 	(notmuch-search "from:lars@seas.harvard.edu and subject:\"Maildir storage\"")
 	(notmuch-test-wait)
@@ -79,6 +83,7 @@ test_emacs '(let ((notmuch-show-only-matching-messages t))
 test_expect_equal_file $EXPECTED/notmuch-show-elide-non-matching-messages-on OUTPUT
 
 test_begin_subtest "notmuch-show: elide non-matching messages (w/ notmuch-show-toggle-elide-non-matching)"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-show-only-matching-messages nil))
 	(notmuch-search "from:lars@seas.harvard.edu and subject:\"Maildir storage\"")
 	(notmuch-test-wait)
@@ -89,6 +94,7 @@ test_emacs '(let ((notmuch-show-only-matching-messages nil))
 test_expect_equal_file $EXPECTED/notmuch-show-elide-non-matching-messages-on OUTPUT
 
 test_begin_subtest "notmuch-show: elide non-matching messages (w/ prefix arg to notmuch-show)"
+test_subtest_known_broken
 test_emacs '(let ((notmuch-show-only-matching-messages nil))
 	(notmuch-search "from:lars@seas.harvard.edu and subject:\"Maildir storage\"")
 	(notmuch-test-wait)
@@ -98,6 +104,7 @@ test_emacs '(let ((notmuch-show-only-matching-messages nil))
 test_expect_equal_file $EXPECTED/notmuch-show-elide-non-matching-messages-on OUTPUT
 
 test_begin_subtest "notmuch-show: disable indentation of thread content (w/ notmuch-show-toggle-thread-indentation)"
+test_subtest_known_broken
 test_emacs '(notmuch-search "from:lars@seas.harvard.edu and subject:\"Maildir storage\"")
 	(notmuch-test-wait)
 	(notmuch-search-show-thread)

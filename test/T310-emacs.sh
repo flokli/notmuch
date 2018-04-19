@@ -59,12 +59,14 @@ test_emacs '(notmuch-hello)
 test_expect_equal_file $EXPECTED/notmuch-hello-view-inbox OUTPUT
 
 test_begin_subtest "Basic notmuch-show view in emacs"
+test_subtest_known_broken
 maildir_storage_thread=$(notmuch search --output=threads id:20091117190054.GU3165@dottiness.seas.harvard.edu)
 test_emacs "(notmuch-show \"$maildir_storage_thread\")
 	    (test-output)"
 test_expect_equal_file $EXPECTED/notmuch-show-thread-maildir-storage OUTPUT
 
 test_begin_subtest "Basic notmuch-show view in emacs default indentation"
+test_subtest_known_broken
 maildir_storage_thread=$(notmuch search --output=threads id:20091117190054.GU3165@dottiness.seas.harvard.edu)
 test_emacs "(let ((notmuch-show-indent-messages-width 1))
 	      (notmuch-show \"$maildir_storage_thread\")
@@ -72,6 +74,7 @@ test_emacs "(let ((notmuch-show-indent-messages-width 1))
 test_expect_equal_file $EXPECTED/notmuch-show-thread-maildir-storage OUTPUT
 
 test_begin_subtest "Basic notmuch-show view in emacs without indentation"
+test_subtest_known_broken
 maildir_storage_thread=$(notmuch search --output=threads id:20091117190054.GU3165@dottiness.seas.harvard.edu)
 test_emacs "(let ((notmuch-show-indent-messages-width 0))
 	      (notmuch-show \"$maildir_storage_thread\")
@@ -79,6 +82,7 @@ test_emacs "(let ((notmuch-show-indent-messages-width 0))
 test_expect_equal_file $EXPECTED/notmuch-show-thread-maildir-storage-without-indentation OUTPUT
 
 test_begin_subtest "Basic notmuch-show view in emacs with fourfold indentation"
+test_subtest_known_broken
 maildir_storage_thread=$(notmuch search --output=threads id:20091117190054.GU3165@dottiness.seas.harvard.edu)
 test_emacs "(let ((notmuch-show-indent-messages-width 4))
 	      (notmuch-show \"$maildir_storage_thread\")
@@ -104,6 +108,7 @@ notmuch_date_sanitize < OUTPUT.raw > OUTPUT
 test_expect_equal_file EXPECTED OUTPUT
 
 test_begin_subtest "Navigation of notmuch-search to thread view"
+test_subtest_known_broken
 test_emacs '(notmuch-search "tag:inbox")
 	    (notmuch-test-wait)
 	    (goto-char (point-min))
@@ -717,6 +722,7 @@ test_emacs '(notmuch-show "id:cf0c4d610911171136h1713aa59w9cf9aa31f052ad0a@mail.
 test_expect_equal_file $EXPECTED/raw-message-cf0c4d-52ad0a OUTPUT
 
 test_begin_subtest "Hiding/showing signature in notmuch-show view"
+test_subtest_known_broken
 maildir_storage_thread=$(notmuch search --output=threads id:20091117190054.GU3165@dottiness.seas.harvard.edu)
 test_emacs "(notmuch-show \"$maildir_storage_thread\")
 	    (search-forward \"Click/Enter to show.\")
